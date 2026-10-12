@@ -1,0 +1,10 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "portafolio",
+  "compatibility_date": "2025-09-01",
+  // Solo archivos estáticos: la web ya sale prerenderizada de `ng build`
+  "assets": {
+    "directory": "./dist/portafolio/browser",
+    "not_found_handling": "single-page-application"
+  }
+}

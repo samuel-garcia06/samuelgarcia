@@ -2,7 +2,7 @@
 
 Portafolio personal de **Samuel García Ayala**, desarrollador web fullstack.
 
-**Web:** https://samuelgarcia.dev · **Empresa:** [webparatodo.com](https://webparatodo.com)
+**Web:** https://samuelgarcia-dev.com · **Empresa:** [webparatodo.com](https://webparatodo.com)
 
 | Escritorio (claro) | Escritorio (oscuro) |
 | --- | --- |
@@ -19,7 +19,7 @@ Portafolio personal de **Samuel García Ayala**, desarrollador web fullstack.
 - Tailwind CSS v4
 - Iconos con [lucide-angular](https://lucide.dev)
 - Fuentes Sora y DM Sans (Google Fonts)
-- Alojada en Cloudflare Pages con dominio propio
+- Alojada en Cloudflare Workers (archivos estáticos) con dominio propio
 
 ## Estructura
 
@@ -45,12 +45,13 @@ npm run build      # compila en dist/portafolio/browser
 
 ## Despliegue
 
-Cloudflare Pages está conectado a este repositorio: cada `push` a `main` compila y publica la web automáticamente.
+El Worker `portafolio` de Cloudflare está conectado a este repositorio: cada `push` a `main` compila y publica la web automáticamente.
 
 | Ajuste | Valor |
 | --- | --- |
 | Build command | `npx ng build` |
-| Build output directory | `dist/portafolio/browser` |
+| Deploy command | `npx wrangler deploy` |
+| Configuración | `wrangler.jsonc` (sirve `dist/portafolio/browser`) |
 | Node | 22 (fijado en `.node-version`) |
 
 `public/_headers` define la caché de los archivos con hash y cabeceras de seguridad.
