@@ -1,0 +1,18 @@
+<section id="sobre-mi" aria-labelledby="about-title" class="section">
+  <div class="container-page grid gap-10 lg:grid-cols-[1fr_2fr] lg:gap-16">
+    <h2 id="about-title" class="section-title">Sobre mí</h2>
+
+    <div class="max-w-3xl">
+      @for (paragraph of about.paragraphs; track $index) {
+        <p class="text-lg leading-relaxed text-slate-600 not-first:mt-5 dark:text-slate-300">{{ paragraph }}</p>
+      }
+
+      <ul class="mt-8 flex flex-wrap gap-2" aria-label="Rasgos personales">
+        <li class="chip">{{ profile.age }} años</li>
+        @for (trait of about.traits; track trait) {
+          <li class="chip">{{ trait }}</li>
+        }
+      </ul>
+    </div>
+  </div>
+</section>

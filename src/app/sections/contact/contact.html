@@ -1,0 +1,78 @@
+<section id="contacto" aria-labelledby="contact-title" class="section !pt-4 before:hidden">
+  <div class="container-page">
+    <div
+      class="overflow-hidden rounded-3xl bg-slate-900 px-6 py-12 text-slate-300 sm:px-10 sm:py-14 lg:px-14 lg:py-16 dark:border dark:border-slate-800"
+    >
+      <div class="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
+        <div>
+          <h2 id="contact-title" class="section-title !text-white">¿Hablamos?</h2>
+          <p class="mt-4 max-w-md text-lg leading-relaxed text-slate-300">
+            Estoy buscando mi siguiente equipo. Si tienes una vacante o un proyecto, escríbeme o llámame y te respondo lo antes posible.
+          </p>
+          <a
+            [href]="profile.cv"
+            download="CV_Samuel_Garcia_Ayala.pdf"
+            class="btn mt-8 !min-h-14 bg-accent-400 !px-7 !text-base text-slate-950 hover:bg-accent-300"
+          >
+            <lucide-icon [img]="icons.Download" [size]="20" aria-hidden="true" />
+            Descargar CV
+          </a>
+        </div>
+
+        <ul class="divide-y divide-slate-700/80 border-y border-slate-700/80">
+          <li class="flex flex-wrap items-center gap-x-4 gap-y-2 py-5">
+            <lucide-icon [img]="icons.Mail" [size]="20" class="shrink-0 text-accent-300" aria-hidden="true" />
+            <div class="min-w-0 flex-1">
+              <p class="text-sm text-slate-400">Correo</p>
+              <a [href]="'mailto:' + profile.email" class="font-medium break-all text-white hover:text-accent-300">{{ profile.email }}</a>
+            </div>
+            <button type="button" class="copy-btn" (click)="copy('email')" aria-label="Copiar correo">
+              <lucide-icon [img]="copied() === 'email' ? icons.Check : icons.Copy" [size]="16" aria-hidden="true" />
+              {{ copied() === 'email' ? 'Copiado' : 'Copiar' }}
+            </button>
+          </li>
+          <li class="flex flex-wrap items-center gap-x-4 gap-y-2 py-5">
+            <lucide-icon [img]="icons.Phone" [size]="20" class="shrink-0 text-accent-300" aria-hidden="true" />
+            <div class="min-w-0 flex-1">
+              <p class="text-sm text-slate-400">Teléfono</p>
+              <a [href]="profile.phoneHref" class="font-medium whitespace-nowrap text-white hover:text-accent-300">{{ profile.phone }}</a>
+            </div>
+            <button type="button" class="copy-btn" (click)="copy('phone')" aria-label="Copiar teléfono">
+              <lucide-icon [img]="copied() === 'phone' ? icons.Check : icons.Copy" [size]="16" aria-hidden="true" />
+              {{ copied() === 'phone' ? 'Copiado' : 'Copiar' }}
+            </button>
+          </li>
+          <li class="flex items-center gap-4 py-5">
+            <lucide-icon [img]="icons.Linkedin" [size]="20" class="shrink-0 text-accent-300" aria-hidden="true" />
+            <div class="min-w-0 flex-1">
+              <p class="text-sm text-slate-400">LinkedIn</p>
+              <a [href]="profile.linkedin" target="_blank" rel="noopener" class="font-medium break-all text-white hover:text-accent-300"
+                >linkedin.com/in/samuel-garcia-22155b230<span class="sr-only"> (se abre en una pestaña nueva)</span></a
+              >
+            </div>
+          </li>
+          <li class="flex items-center gap-4 py-5">
+            <lucide-icon [img]="icons.Github" [size]="20" class="shrink-0 text-accent-300" aria-hidden="true" />
+            <div class="min-w-0 flex-1">
+              <p class="text-sm text-slate-400">GitHub</p>
+              <a [href]="profile.github" target="_blank" rel="noopener" class="font-medium break-all text-white hover:text-accent-300"
+                >github.com/samuel-garcia06<span class="sr-only"> (se abre en una pestaña nueva)</span></a
+              >
+            </div>
+          </li>
+          <li class="flex items-center gap-4 py-5">
+            <lucide-icon [img]="icons.Globe" [size]="20" class="shrink-0 text-accent-300" aria-hidden="true" />
+            <div class="min-w-0 flex-1">
+              <p class="text-sm text-slate-400">Mi empresa</p>
+              <a [href]="profile.companyUrl" target="_blank" rel="noopener" class="font-medium break-all text-white hover:text-accent-300"
+                >{{ profile.companyDisplayUrl }}<span class="sr-only"> (se abre en una pestaña nueva)</span></a
+              >
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <p class="sr-only" role="status" aria-live="polite">{{ status() }}</p>
+    </div>
+  </div>
+</section>

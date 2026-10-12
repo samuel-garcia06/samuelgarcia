@@ -1,0 +1,20 @@
+<section id="tecnologias" aria-labelledby="skills-title" class="section">
+  <div class="container-page grid gap-10 lg:grid-cols-[1fr_2fr] lg:gap-16">
+    <h2 id="skills-title" class="section-title">Tecnologías</h2>
+
+    <dl class="max-w-3xl divide-y divide-slate-200 border-y border-slate-200 dark:divide-slate-800 dark:border-slate-800">
+      @for (group of groups; track group.title) {
+        <div class="grid gap-3 py-5 sm:grid-cols-[9rem_1fr] sm:gap-6">
+          <dt class="pt-1 font-display font-semibold text-slate-900 dark:text-white">{{ group.title }}</dt>
+          <dd>
+            <ul class="flex flex-wrap gap-2">
+              @for (item of group.items; track item) {
+                <li class="chip">{{ item }}</li>
+              }
+            </ul>
+          </dd>
+        </div>
+      }
+    </dl>
+  </div>
+</section>

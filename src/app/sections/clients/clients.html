@@ -1,0 +1,59 @@
+<section id="clientes" aria-labelledby="clients-title" class="section">
+  <div class="container-page">
+    <h2 id="clients-title" class="section-title">Clientes</h2>
+    <p class="section-lead">
+      Webs en producción para negocios reales, hechas con mi empresa,
+      <a
+        [href]="profile.companyUrl"
+        target="_blank"
+        rel="noopener"
+        class="font-medium text-accent-700 underline decoration-accent-700/30 underline-offset-4 hover:decoration-current dark:text-accent-400 dark:decoration-accent-400/30"
+        >{{ profile.company }}<span class="sr-only"> (se abre en una pestaña nueva)</span></a
+      >.
+    </p>
+
+    <ul class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      @for (client of clients; track client.url) {
+        <li>
+          <a [href]="client.url" target="_blank" rel="noopener" class="card card-hover group flex h-full flex-col overflow-hidden">
+            <span class="block aspect-[16/10] overflow-hidden border-b border-slate-200 bg-slate-100 dark:border-slate-800 dark:bg-slate-800/60">
+              @if (client.image) {
+                <img
+                  [src]="client.image"
+                  alt=""
+                  width="800"
+                  height="500"
+                  loading="lazy"
+                  decoding="async"
+                  class="size-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.02]"
+                />
+              } @else {
+                <span class="flex size-full flex-col items-center justify-center gap-3 text-slate-500 dark:text-slate-400" aria-hidden="true">
+                  <lucide-icon [img]="client.icon" [size]="32" [strokeWidth]="1.5" />
+                  <span class="text-sm font-medium">{{ client.displayUrl }}</span>
+                </span>
+              }
+            </span>
+
+            <span class="flex flex-1 items-start gap-3 p-5">
+              <span class="min-w-0 flex-1">
+                <span class="block font-display font-semibold text-slate-900 dark:text-white">{{ client.name }}</span>
+                <span class="mt-1 flex items-center gap-1.5 text-sm text-slate-600 dark:text-slate-400">
+                  <lucide-icon [img]="client.icon" [size]="15" class="shrink-0" aria-hidden="true" />
+                  {{ client.service }}
+                </span>
+                <span class="sr-only"> (se abre en una pestaña nueva)</span>
+              </span>
+              <lucide-icon
+                [img]="icons.ArrowUpRight"
+                [size]="18"
+                class="mt-0.5 shrink-0 text-slate-400 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent-700 dark:group-hover:text-accent-400"
+                aria-hidden="true"
+              />
+            </span>
+          </a>
+        </li>
+      }
+    </ul>
+  </div>
+</section>

@@ -1,0 +1,94 @@
+<header
+  class="fixed inset-x-0 top-0 z-50 border-b backdrop-blur-md transition-colors duration-200"
+  [class]="
+    scrolled() || menuOpen()
+      ? 'border-slate-200 bg-white/90 dark:border-slate-800 dark:bg-slate-950/90'
+      : 'border-transparent bg-white/70 dark:bg-slate-950/70'
+  "
+>
+  <div class="container-page flex h-16 items-center justify-between gap-4">
+    <a
+      href="#inicio"
+      class="flex items-center gap-2.5 font-display text-lg font-bold tracking-tight text-slate-900 dark:text-white"
+      aria-label="{{ profile.name }}, ir al inicio"
+      (click)="closeMenu()"
+    >
+      <span
+        class="inline-flex size-9 items-center justify-center rounded-lg bg-slate-900 text-sm text-white dark:bg-white dark:text-slate-900"
+        aria-hidden="true"
+        >SG</span
+      >
+      <span class="hidden whitespace-nowrap sm:inline">Samuel García</span>
+    </a>
+
+    <nav aria-label="Principal" class="hidden xl:block">
+      <ul class="flex items-center gap-1">
+        @for (link of links; track link.id) {
+          <li>
+            <a
+              [href]="'#' + link.id"
+              class="rounded-lg px-3 py-2 text-sm font-medium whitespace-nowrap transition-colors"
+              [class]="
+                active() === link.id
+                  ? 'text-accent-700 dark:text-accent-400'
+                  : 'text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white'
+              "
+              [attr.aria-current]="active() === link.id ? 'location' : null"
+              >{{ link.label }}</a
+            >
+          </li>
+        }
+      </ul>
+    </nav>
+
+    <div class="flex items-center gap-2">
+      <button
+        type="button"
+        class="icon-btn"
+        (click)="theme.toggle()"
+        [attr.aria-label]="theme.theme() === 'dark' ? 'Activar modo claro' : 'Activar modo oscuro'"
+      >
+        <lucide-icon [img]="theme.theme() === 'dark' ? icons.Sun : icons.Moon" [size]="18" aria-hidden="true" />
+      </button>
+
+      <a [href]="profile.cv" download="CV_Samuel_Garcia_Ayala.pdf" class="btn btn-primary hidden !min-h-10 !px-4 whitespace-nowrap sm:inline-flex">
+        <lucide-icon [img]="icons.Download" [size]="16" aria-hidden="true" />
+        Descargar CV
+      </a>
+
+      <button
+        type="button"
+        class="icon-btn xl:hidden"
+        (click)="toggleMenu()"
+        [attr.aria-expanded]="menuOpen()"
+        aria-controls="menu-movil"
+        [attr.aria-label]="menuOpen() ? 'Cerrar menú' : 'Abrir menú'"
+      >
+        <lucide-icon [img]="menuOpen() ? icons.X : icons.Menu" [size]="20" aria-hidden="true" />
+      </button>
+    </div>
+  </div>
+
+  @if (menuOpen()) {
+    <nav id="menu-movil" aria-label="Menú móvil" class="border-t border-slate-200 bg-white xl:hidden dark:border-slate-800 dark:bg-slate-950">
+      <ul class="container-page flex flex-col py-3">
+        @for (link of links; track link.id) {
+          <li>
+            <a
+              [href]="'#' + link.id"
+              (click)="closeMenu()"
+              class="block rounded-lg px-3 py-3 text-base font-medium text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800"
+              >{{ link.label }}</a
+            >
+          </li>
+        }
+        <li class="mt-2 px-3 pb-2 sm:hidden">
+          <a [href]="profile.cv" download="CV_Samuel_Garcia_Ayala.pdf" class="btn btn-primary w-full" (click)="closeMenu()">
+            <lucide-icon [img]="icons.Download" [size]="16" aria-hidden="true" />
+            Descargar CV
+          </a>
+        </li>
+      </ul>
+    </nav>
+  }
+</header>

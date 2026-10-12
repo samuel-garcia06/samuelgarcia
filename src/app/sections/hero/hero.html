@@ -1,0 +1,100 @@
+<section id="inicio" aria-labelledby="hero-title" class="pt-28 sm:pt-32 lg:pt-36">
+  <div class="container-page grid items-center gap-14 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
+    <div>
+      <p
+        class="inline-flex items-center gap-2.5 rounded-full border border-accent-600/25 bg-accent-50 px-3.5 py-1.5 text-sm font-medium text-accent-800 dark:border-accent-400/25 dark:bg-accent-400/10 dark:text-accent-300"
+      >
+        <span class="relative flex size-2" aria-hidden="true">
+          <span class="absolute inline-flex size-full rounded-full bg-accent-500 motion-safe:animate-pulse-dot"></span>
+          <span class="relative inline-flex size-2 rounded-full bg-accent-600 dark:bg-accent-400"></span>
+        </span>
+        Abierto a nuevas oportunidades
+      </p>
+
+      <h1 id="hero-title" class="mt-6 text-4xl leading-[1.1] font-semibold tracking-tight sm:text-5xl lg:text-[3.5rem]">
+        Hola, soy {{ profile.firstName }}.
+        <span class="block text-slate-500 dark:text-slate-400">{{ profile.role }}.</span>
+      </h1>
+
+      <p class="mt-6 max-w-xl text-lg leading-relaxed text-slate-600 dark:text-slate-300">
+        {{ profile.summary }}
+      </p>
+
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="#proyectos" class="btn btn-primary">
+          Ver proyectos
+          <lucide-icon [img]="icons.ArrowRight" [size]="18" aria-hidden="true" />
+        </a>
+        <a [href]="profile.cv" download="CV_Samuel_Garcia_Ayala.pdf" class="btn btn-secondary">
+          <lucide-icon [img]="icons.Download" [size]="18" aria-hidden="true" />
+          Descargar CV
+        </a>
+      </div>
+
+      <ul class="mt-8 flex items-center gap-2" aria-label="Redes y contacto">
+        <li>
+          <a [href]="profile.github" target="_blank" rel="noopener" class="icon-btn" aria-label="GitHub (se abre en una pestaña nueva)">
+            <lucide-icon [img]="icons.Github" [size]="20" aria-hidden="true" />
+          </a>
+        </li>
+        <li>
+          <a [href]="profile.linkedin" target="_blank" rel="noopener" class="icon-btn" aria-label="LinkedIn (se abre en una pestaña nueva)">
+            <lucide-icon [img]="icons.Linkedin" [size]="20" aria-hidden="true" />
+          </a>
+        </li>
+        <li>
+          <a [href]="'mailto:' + profile.email" class="icon-btn" aria-label="Enviar un correo a {{ profile.email }}">
+            <lucide-icon [img]="icons.Mail" [size]="20" aria-hidden="true" />
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="relative mx-auto w-full max-w-[15rem] sm:max-w-[16rem] lg:mr-8">
+      <div
+        class="absolute inset-0 translate-x-4 translate-y-4 rounded-3xl border border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-900"
+        aria-hidden="true"
+      ></div>
+      <img
+        [src]="profile.photo"
+        alt="Retrato de {{ profile.name }}"
+        width="314"
+        height="392"
+        fetchpriority="high"
+        class="relative aspect-[4/5] w-full rounded-3xl border border-slate-200 object-cover object-top dark:border-slate-800 dark:brightness-90"
+      />
+      <a
+        [href]="profile.companyUrl"
+        target="_blank"
+        rel="noopener"
+        class="group absolute -bottom-6 -left-6 flex items-center gap-3 rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-lg shadow-slate-900/10 transition-colors hover:border-accent-600/50 sm:-left-12 dark:border-slate-700 dark:bg-slate-900 dark:shadow-black/30 dark:hover:border-accent-400/40"
+      >
+        <span
+          class="inline-flex size-10 items-center justify-center rounded-xl bg-accent-50 text-accent-700 dark:bg-accent-400/10 dark:text-accent-400"
+          aria-hidden="true"
+        >
+          <lucide-icon [img]="icons.Briefcase" [size]="20" />
+        </span>
+        <span class="leading-tight">
+          <span class="block font-display text-sm font-semibold text-slate-900 dark:text-white">{{ profile.company }}</span>
+          <span class="block text-sm text-slate-600 dark:text-slate-400">Fundador · {{ profile.companyDisplayUrl }}</span>
+          <span class="sr-only">(se abre en una pestaña nueva)</span>
+        </span>
+      </a>
+    </div>
+  </div>
+
+  <div class="container-page mt-20 lg:mt-24">
+    <ul
+      class="grid grid-cols-1 divide-y divide-slate-200 border-t border-slate-200 sm:grid-cols-2 sm:divide-y-0 lg:grid-cols-4 lg:divide-x dark:divide-slate-800 dark:border-slate-800"
+      aria-label="Datos personales"
+    >
+      @for (fact of facts; track fact.label) {
+        <li class="flex items-center gap-3 py-4 sm:py-5 lg:justify-center">
+          <lucide-icon [img]="fact.icon" [size]="18" class="shrink-0 text-accent-700 dark:text-accent-400" aria-hidden="true" />
+          <span class="text-[0.9375rem] font-medium text-slate-700 dark:text-slate-200">{{ fact.label }}</span>
+        </li>
+      }
+    </ul>
+  </div>
+</section>

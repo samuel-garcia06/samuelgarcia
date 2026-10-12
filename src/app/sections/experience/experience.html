@@ -1,0 +1,43 @@
+<section id="experiencia" aria-labelledby="experience-title" class="section">
+  <div class="container-page grid gap-10 lg:grid-cols-[1fr_2fr] lg:gap-16">
+    <h2 id="experience-title" class="section-title">Experiencia</h2>
+
+    <ol class="relative max-w-3xl border-l border-slate-300 dark:border-slate-700">
+      @for (item of items; track item.company) {
+        <li class="relative pb-12 pl-8 last:pb-0 sm:pl-10">
+          <span
+            class="absolute top-1.5 -left-[0.4375rem] size-3.5 rounded-full border-2 border-white dark:border-slate-950"
+            [class]="item.current ? 'bg-accent-600 dark:bg-accent-400' : 'bg-slate-400 dark:bg-slate-500'"
+            aria-hidden="true"
+          ></span>
+
+          <p class="text-sm font-medium text-slate-500 dark:text-slate-400">{{ item.period }}</p>
+          <h3 class="mt-1 text-xl font-semibold">{{ item.role }}</h3>
+          @if (item.url) {
+            <a
+              [href]="item.url"
+              target="_blank"
+              rel="noopener"
+              class="mt-0.5 inline-flex items-center gap-1 font-medium text-accent-700 hover:underline dark:text-accent-400"
+            >
+              {{ item.company }}
+              <lucide-icon [img]="icons.ArrowUpRight" [size]="16" aria-hidden="true" />
+              <span class="sr-only">(se abre en una pestaña nueva)</span>
+            </a>
+          } @else {
+            <p class="mt-0.5 font-medium text-accent-700 dark:text-accent-400">{{ item.company }}</p>
+          }
+
+          <ul class="mt-4 space-y-2.5">
+            @for (highlight of item.highlights; track $index) {
+              <li class="relative pl-5 leading-relaxed text-slate-600 dark:text-slate-300">
+                <span class="absolute top-[0.7em] left-0 h-px w-2.5 bg-slate-400 dark:bg-slate-500" aria-hidden="true"></span>
+                {{ highlight }}
+              </li>
+            }
+          </ul>
+        </li>
+      }
+    </ol>
+  </div>
+</section>

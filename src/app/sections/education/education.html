@@ -1,0 +1,19 @@
+<section id="formacion" aria-labelledby="education-title" class="section">
+  <div class="container-page grid gap-10 lg:grid-cols-[1fr_2fr] lg:gap-16">
+    <h2 id="education-title" class="section-title">Formación</h2>
+
+    <ul class="max-w-3xl divide-y divide-slate-200 border-y border-slate-200 dark:divide-slate-800 dark:border-slate-800">
+      @for (item of items; track item.title) {
+        <li class="py-5">
+          <h3 class="font-semibold leading-snug">
+            {{ item.title }}
+            @if (item.detail) {
+              <span class="font-sans font-normal text-slate-500 dark:text-slate-400">· {{ item.detail }}</span>
+            }
+          </h3>
+          <p class="mt-1 text-slate-600 dark:text-slate-400">{{ item.center }}</p>
+        </li>
+      }
+    </ul>
+  </div>
+</section>
